@@ -1009,19 +1009,6 @@ _Static_assert(sizeof(__wasi_lookupflags_t) == 4, "witx calculated size");
 _Static_assert(_Alignof(__wasi_lookupflags_t) == 4, "witx calculated align");
 
 /**
- * Default FD for the root folder.
- * Why file descriptor 3?
- * While not specified, the most common WASI implementation, wasi-libc, expects
- * POSIX style file descriptor allocation, where the lowest available number is
- * used to open the next file. Since 1 and 2 are taken by stdout and stderr,
- * `root` is assigned 3.
- *   - https://github.com/WebAssembly/WASI/issues/122
- *   - https://pubs.opengroup.org/onlinepubs/9699919799/functions/V2_chap02.html#tag_15_14
- *   - https://github.com/WebAssembly/wasi-libc/blob/wasi-sdk-16/libc-bottom-half/sources/preopens.c#L215
- */
-#define __WASI_FD_ROOT 3
-
-/**
  * Open flags used by `path_open`.
  */
 typedef uint16_t __wasi_oflags_t;
